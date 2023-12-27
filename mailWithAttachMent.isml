@@ -1,0 +1,17 @@
+<iscontent type="multipart/mixed; boundary=------------000001030701020908040900" compact="false" charset="UTF-8">
+This is a multi-part message in MIME format.
+--------------000001030701020908040900
+Content-Type: text/html; charset=iso-8859-1
+Content-Transfer-Encoding: 8bit
+
+<isinclude template="mail/listErrorCustomerEmail" />
+
+<isif condition="${ !empty(pdict.base64FileMap) }">
+<isloop items="${ pdict.base64FileMap.keySet() }" var="key">
+<isset name="fileContent" value="${ pdict.base64FileMap.get(key) }" scope="page"/>--------------000001030701020908040900
+Content-Description: ${key}
+Content-Disposition: attachment; filename="${key}"; size=${fileContent.length}; creation-date="${(new Date()).toISOString()}"; modification-date="${(new Date()).toISOString()}"
+Content-Transfer-Encoding: base64
+
+${fileContent}</isloop>
+</isif>--------------000001030701020908040900--
